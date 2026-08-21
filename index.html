@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>AuraEcho - Fazoviy Xotira va Hissiyot Jurnali</title>
+  <meta name="description" content="AuraEcho - Apple iOS Cupertino dizaynidagi fazoviy xotira jurnali, 16 qatlamli Web Audio tovush sintezatori, shaxsiy tovush yaratish va MP3/WAV audio yuklab olish tizimi.">
+  <meta name="theme-color" content="#F2F2F7">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="app-container">
+
+    <!-- ====================================================================
+         1. iOS Navigation Bar & Header
+         ==================================================================== -->
+    <header class="ios-nav-bar">
+      <div class="ios-nav-top">
+        <div class="ios-nav-brand">
+          <div class="ios-brand-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+              <path d="M12 6a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm0 10a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/>
+              <circle cx="12" cy="12" r="2" fill="currentColor"/>
+            </svg>
+          </div>
+          <div>
+            <span class="ios-headline" style="letter-spacing: -0.3px;">AuraEcho</span>
+            <span class="ios-caption2" style="display: block; color: var(--ios-blue); font-weight: 700;">Spatial Sensory Studio v2.5</span>
+          </div>
+        </div>
+
+        <div class="ios-nav-actions">
+          <!-- Tongi / Tungi Rejim Switch -->
+          <label class="ios-switch-container" title="Tungi / Tongi rejim">
+            <span class="ios-caption1" id="theme-label" style="font-weight: 600;">Tongi</span>
+            <div class="ios-switch">
+              <input type="checkbox" id="theme-toggle" aria-label="Mavzuni almashtirish">
+              <span class="ios-switch-slider"></span>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="ios-header-desc">Fazoviy Xotira, Sensorli Jurnal va 16 Qatlamli Audio Sintezatori</div>
+    </header>
+
+    <!-- ====================================================================
+         2. TAB 1: BOSHQARUV PANELI (Dashboard)
+         ==================================================================== -->
+    <main id="tab-dashboard" class="tab-content active">
+      
+      <!-- Asosiy Yangi Kapsula Yaratish Bo'limi -->
+      <section class="ios-section">
+        <div class="ios-grouped-list" style="padding: 20px; background-color: var(--bg-grouped);">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="ios-caption1" style="color: var(--ios-blue); font-weight: 700; text-transform: uppercase;">Sensorli Xotira & Studiya</span>
+              <span class="capsule-badge" style="background-color: var(--ios-green); color: #FFFFFF; font-weight: 700;">16 Fazoviy Tovush</span>
+            </div>
+            <h1 class="ios-title2" style="margin: 0;">Lahzani Fazoviy Muhrlang</h1>
+            <p class="ios-subhead">Atrof-muhit akustikasi, yorug'lik va tebranish parametrlarini xotirangiz bilan birga saqlang hamda xohlagan audio miksingizni yuklab oling.</p>
+            
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+              <button id="btn-open-create-modal" class="ios-btn ios-btn-primary" style="flex: 1; min-width: 200px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span>Yangi Xotira Kapsulasi</span>
+              </button>
+
+              <button id="btn-open-custom-synth-dash" class="ios-btn ios-btn-secondary" style="min-width: 180px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                <span>Shaxsiy Tovush Yaratish</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Jonli Sensorli Telemetriya Vidjeti -->
+      <section class="ios-section">
+        <div class="ios-section-header">Jonli Telemetriya & Sensorlar</div>
+        <div class="telemetry-grid">
+          
+          <!-- Desibel Metr -->
+          <div class="telemetry-card">
+            <div class="telemetry-header">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              </svg>
+              <span>Shovqin</span>
+            </div>
+            <div class="telemetry-value"><span id="sensor-db">38</span> <span class="ios-caption2">dB</span></div>
+            <div class="telemetry-indicator">
+              <div id="sensor-db-fill" class="telemetry-fill" style="width: 38%;"></div>
+            </div>
+          </div>
+
+          <!-- Yorug'lik Datchigi -->
+          <div class="telemetry-card">
+            <div class="telemetry-header">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+              </svg>
+              <span>Yorug'lik</span>
+            </div>
+            <div class="telemetry-value"><span id="sensor-lux">420</span> <span class="ios-caption2">lux</span></div>
+            <div class="telemetry-indicator">
+              <div id="sensor-lux-fill" class="telemetry-fill" style="width: 52%; background-color: var(--ios-orange);"></div>
+            </div>
+          </div>
+
+          <!-- Uyg'unlik Indeksi -->
+          <div class="telemetry-card">
+            <div class="telemetry-header">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+              </svg>
+              <span>Uyg'unlik</span>
+            </div>
+            <div class="telemetry-value"><span id="sensor-index">86</span> <span class="ios-caption2">%</span></div>
+            <div class="telemetry-indicator">
+              <div id="sensor-index-fill" class="telemetry-fill" style="width: 86%; background-color: var(--ios-green);"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 3D Giroskop Qiyalik Vidjeti -->
+        <div class="ios-grouped-list" style="margin-top: 12px; padding: 14px 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <span class="ios-caption1" style="font-weight: 600;">Fazoviy Giroskop Orientatsiyasi</span>
+            </div>
+            <span class="ios-caption2" id="sensor-tilt-text">X: 0° | Y: 0°</span>
+          </div>
+          
+          <div class="gyro-visualizer">
+            <div class="gyro-crosshair"></div>
+            <div class="gyro-crosshair vertical"></div>
+            <div id="gyro-bubble" class="gyro-bubble"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tezkor Fazoviy Mood Presetlari (Responsive Grid) -->
+      <section class="ios-section">
+        <div class="ios-section-header">Tezkor Fazoviy Muhitlar & Presetlar</div>
+        <div class="preset-grid">
+          
+          <!-- Preset 1: Chuqur Diqqat -->
+          <div class="ios-cell interactive" data-preset="focus">
+            <div class="ios-cell-left">
+              <div class="ios-cell-icon" style="background-color: var(--ios-blue);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="12" r="4"></circle>
+                </svg>
+              </div>
+              <div class="ios-cell-content">
+                <span class="ios-cell-title">Chuqur Diqqat (Focus)</span>
+                <span class="ios-cell-subtitle">Yomg'ir + 6Hz Theta to'lqinlar</span>
+              </div>
+            </div>
+            <div class="ios-cell-right">
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-quick-preset" data-preset="focus">Tinglash</button>
+            </div>
+          </div>
+
+          <!-- Preset 2: Tinchlanish -->
+          <div class="ios-cell interactive" data-preset="calm">
+            <div class="ios-cell-left">
+              <div class="ios-cell-icon" style="background-color: var(--ios-green);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                </svg>
+              </div>
+              <div class="ios-cell-content">
+                <span class="ios-cell-title">Tinchlanish (Calm)</span>
+                <span class="ios-cell-subtitle">O'rmon, okean va tog' bulog'i</span>
+              </div>
+            </div>
+            <div class="ios-cell-right">
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-quick-preset" data-preset="calm">Tinglash</button>
+            </div>
+          </div>
+
+          <!-- Preset 3: Zen Meditatsiya -->
+          <div class="ios-cell interactive" data-preset="meditation">
+            <div class="ios-cell-left">
+              <div class="ios-cell-icon" style="background-color: var(--ios-purple);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M8 12a4 4 0 0 1 8 0"></path>
+                </svg>
+              </div>
+              <div class="ios-cell-content">
+                <span class="ios-cell-title">Zen Meditatsiya (Zen)</span>
+                <span class="ios-cell-subtitle">Tibet kosasi + Kosmik dron</span>
+              </div>
+            </div>
+            <div class="ios-cell-right">
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-quick-preset" data-preset="meditation">Tinglash</button>
+            </div>
+          </div>
+
+          <!-- Preset 4: Tog' Gulxani -->
+          <div class="ios-cell interactive" data-preset="campfire">
+            <div class="ios-cell-left">
+              <div class="ios-cell-icon" style="background-color: var(--ios-orange);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+                </svg>
+              </div>
+              <div class="ios-cell-content">
+                <span class="ios-cell-title">Tog' Bag'ridagi Gulxan</span>
+                <span class="ios-cell-subtitle">Tungi gulxan chirsillashi va shabada</span>
+              </div>
+            </div>
+            <div class="ios-cell-right">
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-quick-preset" data-preset="campfire">Tinglash</button>
+            </div>
+          </div>
+
+          <!-- Preset 5: Tungi Momaqaldiroq -->
+          <div class="ios-cell interactive" data-preset="storm">
+            <div class="ios-cell-left">
+              <div class="ios-cell-icon" style="background-color: var(--ios-indigo);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+              </div>
+              <div class="ios-cell-content">
+                <span class="ios-cell-title">Tungi Momaqaldiroq</span>
+                <span class="ios-cell-subtitle">Kuchli yomg'ir va chaqmoq gulduragi</span>
+              </div>
+            </div>
+            <div class="ios-cell-right">
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-quick-preset" data-preset="storm">Tinglash</button>
+            </div>
+          </div>
+
+          <!-- Preset 6: Qahvaxona va Yomg'ir -->
+          <div class="ios-cell interactive" data-preset="cafe">
+            <div class="ios-cell-left">
+              <div class="ios-cell-icon" style="background-color: var(--ios-yellow); color: #000000;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                </svg>
+              </div>
+              <div class="ios-cell-content">
+                <span class="ios-cell-title">Qahvaxona & Yomg'ir</span>
+                <span class="ios-cell-subtitle">Issiq qahvaxona va deraza sadosi</span>
+              </div>
+            </div>
+            <div class="ios-cell-right">
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-quick-preset" data-preset="cafe">Tinglash</button>
+            </div>
+          </div>
+
+          <!-- Preset 7: Ambient Pianino & Barglar -->
+          <div class="ios-cell interactive" data-preset="creative">
+            <div class="ios-cell-left">
+              <div class="ios-cell-icon" style="background-color: var(--ios-pink);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M9 18V5l12-2v13"></path>
+                  <circle cx="6" cy="18" r="3"></circle>
+                  <circle cx="18" cy="16" r="3"></circle>
+                </svg>
+              </div>
+              <div class="ios-cell-content">
+                <span class="ios-cell-title">Pianino & Kuzgi Shamol</span>
+                <span class="ios-cell-subtitle">Neoklassik akkordlar va yomg'ir</span>
+              </div>
+            </div>
+            <div class="ios-cell-right">
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-quick-preset" data-preset="creative">Tinglash</button>
+            </div>
+          </div>
+
+          <!-- Preset 8: Tungi Poyezd Sadosi -->
+          <div class="ios-cell interactive" data-preset="train">
+            <div class="ios-cell-left">
+              <div class="ios-cell-icon" style="background-color: var(--ios-gray);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <rect x="4" y="3" width="16" height="16" rx="2"></rect>
+                  <path d="M4 11h16"></path>
+                  <path d="M12 3v8"></path>
+                  <path d="m8 19-2 3"></path>
+                  <path d="m16 19 2 3"></path>
+                </svg>
+              </div>
+              <div class="ios-cell-content">
+                <span class="ios-cell-title">Tungi Poyezd Relslari</span>
+                <span class="ios-cell-subtitle">Ritmli sokin g'ildiraklar sadosi</span>
+              </div>
+            </div>
+            <div class="ios-cell-right">
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-quick-preset" data-preset="train">Tinglash</button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Tizim Statistikasi -->
+      <section class="ios-section">
+        <div class="ios-section-header">Kapsulalar Statistikasi</div>
+        <div class="ios-grouped-list">
+          <div class="ios-cell">
+            <span class="ios-body">Saqlangan Xotiralar</span>
+            <span class="ios-headline" id="stat-total-capsules" style="color: var(--ios-blue);">3</span>
+          </div>
+          <div class="ios-cell">
+            <span class="ios-body">Eng Ko'p Hissiyot</span>
+            <span class="ios-callout" id="stat-top-mood" style="color: var(--text-secondary);">Xotirjamlik</span>
+          </div>
+          <div class="ios-cell">
+            <span class="ios-body">Fazoviy Audio Motor</span>
+            <span class="ios-callout" style="color: var(--ios-green); font-weight: 600;">Web Audio API (16 Tovush Qatlami)</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ====================================================================
+         3. TAB 2: FAZOVIY TOVUSHLAR STUDIYASI (Spatial Audio Lab - 16 Qatlam)
+         ==================================================================== -->
+    <main id="tab-audio" class="tab-content">
+      
+      <!-- Spektr Vizualizatori & Master Eksport -->
+      <section class="ios-section">
+        <div class="visualizer-container">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="ios-brand-badge" style="width: 26px; height: 26px; background-color: var(--ios-blue);">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M2 10v4M6 6v12M10 3v18M14 8v8M18 5v14M22 10v4"></path>
+                </svg>
+              </span>
+              <span class="ios-headline">Real Vaqtli Fazoviy Spektr</span>
+            </div>
+
+            <div style="display: flex; gap: 8px;">
+              <button id="btn-download-master-mix" class="ios-btn ios-btn-sm ios-btn-primary" title="Hozirgi audio miksni audio fayl sifatida yuklab olish">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Miksni Yuklab Olish (Audio)</span>
+              </button>
+              <button id="btn-audio-stop-all" class="ios-btn ios-btn-sm ios-btn-secondary" style="color: var(--ios-red);">Hammasini To'xtatish</button>
+            </div>
+          </div>
+
+          <canvas id="visualizer-canvas" class="visualizer-canvas" width="1000" height="90"></canvas>
+          <div class="sound-slider-labels">
+            <span>20 Hz (Sub-Bass)</span>
+            <span>16 Qatlamli Garmonik Spektr</span>
+            <span>20 kHz (Ultra-High)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Master Ovoz Boshqaruvi va Shaxsiy Sintezatorga O'tish -->
+      <section class="ios-section">
+        <div class="ios-grouped-list" style="padding: 16px 20px;">
+          <div class="sound-slider-group">
+            <div class="sound-slider-labels">
+              <span class="ios-caption1" style="font-weight: 600;">Umumiy Chiqish Ovoz Balandligi (Master Volume)</span>
+              <span id="master-vol-value" class="ios-caption1" style="font-weight: 700; color: var(--ios-blue);">85%</span>
+            </div>
+            <div class="ios-slider-wrapper">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              </svg>
+              <input type="range" id="slider-master-volume" class="ios-slider" min="0" max="1" step="0.01" value="0.85" aria-label="Umumiy ovoz">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+            </div>
+          </div>
+
+          <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--separator); display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div class="ios-headline" style="font-size: 15px;">O'zingiz Shaxsiy Tovush Yarating</div>
+              <div class="ios-caption2">Osillyator, filtr va LFO modulyatsiyasi</div>
+            </div>
+            <button id="btn-open-custom-synth" class="ios-btn ios-btn-sm ios-btn-tinted">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span>Yangi Tovush Yaratish</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 16 Mustaqil Tovush Qatlamlari (Responsive Multi-Column Grid) -->
+      <section class="ios-section" style="gap: 14px;">
+        <div class="ios-section-header">16 ta Fazoviy Tovush Qatlamlari & Yuklab Olish</div>
+
+        <div class="sound-studio-grid" id="sound-studio-grid-container">
+
+          <!-- 1. Yomg'ir Qatlami -->
+          <div class="sound-card" id="card-rain" data-channel="rain">
+            <div class="sound-card-header">
+              <div class="sound-card-title-group">
+                <button class="ios-btn-icon btn-toggle-play" data-channel="rain" title="Ijro / To'xtatish">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <div class="sound-icon-box" style="background-color: var(--ios-blue);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="16" y1="13" x2="16" y2="21"></line>
+                    <line x1="8" y1="13" x2="8" y2="21"></line>
+                    <line x1="12" y1="15" x2="12" y2="23"></line>
+                    <path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ios-headline">Yomg'ir & Tomchilar</div>
+                  <div class="ios-caption2">Oq/pushti shovqin va tomchilar</div>
+                </div>
+              </div>
+              <div class="ios-switch">
+                <input type="checkbox" id="switch-rain" aria-label="Yomg'ir tovushini yoqish">
+                <span class="ios-switch-slider"></span>
+              </div>
+            </div>
+
+            <div class="sound-controls-row">
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Ovoz kuchi</span>
+                  <span id="label-vol-rain">60%</span>
+                </div>
+                <input type="range" id="slider-vol-rain" class="ios-slider" min="0" max="1" step="0.01" value="0.6">
+              </div>
+
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Stereo Pan (Chap / O'ng)</span>
+                  <span id="label-pan-rain">Markaz</span>
+                </div>
+                <input type="range" id="slider-pan-rain" class="ios-slider" min="-1" max="1" step="0.05" value="0">
+              </div>
+
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-download-single-sound" data-channel="rain" style="margin-top: 4px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Ushbu Tovushni Yuklab Olish (Audio)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 2. O'rmon va Shamol Qatlami -->
+          <div class="sound-card" id="card-forest" data-channel="forest">
+            <div class="sound-card-header">
+              <div class="sound-card-title-group">
+                <button class="ios-btn-icon btn-toggle-play" data-channel="forest" title="Ijro / To'xtatish">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <div class="sound-icon-box" style="background-color: var(--ios-green);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M10 10v.2A3 3 0 0 1 8.9 16v0H5v0h0a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"></path>
+                    <path d="M7 16v6"></path>
+                    <path d="M13 19v3"></path>
+                    <path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-4 4.3a1 1 0 0 0 .8 1.7H10l-3 3.3a1 1 0 0 0 .7 1.7H9l-3 3.3a1 1 0 0 0 .7 1.7H13Z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ios-headline">O'rmon & Mayin Shamol</div>
+                  <div class="ios-caption2">Rezonansli shamol va qushlar</div>
+                </div>
+              </div>
+              <div class="ios-switch">
+                <input type="checkbox" id="switch-forest" aria-label="O'rmon tovushini yoqish">
+                <span class="ios-switch-slider"></span>
+              </div>
+            </div>
+
+            <div class="sound-controls-row">
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Ovoz kuchi</span>
+                  <span id="label-vol-forest">50%</span>
+                </div>
+                <input type="range" id="slider-vol-forest" class="ios-slider" min="0" max="1" step="0.01" value="0.5">
+              </div>
+
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Stereo Pan (Chap / O'ng)</span>
+                  <span id="label-pan-forest">Markaz</span>
+                </div>
+                <input type="range" id="slider-pan-forest" class="ios-slider" min="-1" max="1" step="0.05" value="0">
+              </div>
+
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-download-single-sound" data-channel="forest">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Ushbu Tovushni Yuklab Olish (Audio)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. Binaural To'lqinlar Qatlami -->
+          <div class="sound-card" id="card-binaural" data-channel="binaural">
+            <div class="sound-card-header">
+              <div class="sound-card-title-group">
+                <button class="ios-btn-icon btn-toggle-play" data-channel="binaural" title="Ijro / To'xtatish">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <div class="sound-icon-box" style="background-color: var(--ios-purple);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M2 12h5l3 5 4-10 3 5h5"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ios-headline">Binaural To'lqinlar (6Hz)</div>
+                  <div class="ios-caption2">Theta sokinlik to'lqinlari</div>
+                </div>
+              </div>
+              <div class="ios-switch">
+                <input type="checkbox" id="switch-binaural" aria-label="Binaural tovushni yoqish">
+                <span class="ios-switch-slider"></span>
+              </div>
+            </div>
+
+            <div class="sound-controls-row">
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Ovoz kuchi</span>
+                  <span id="label-vol-binaural">50%</span>
+                </div>
+                <input type="range" id="slider-vol-binaural" class="ios-slider" min="0" max="1" step="0.01" value="0.5">
+              </div>
+
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Stereo Pan (Chap / O'ng)</span>
+                  <span id="label-pan-binaural">Markaz</span>
+                </div>
+                <input type="range" id="slider-pan-binaural" class="ios-slider" min="-1" max="1" step="0.05" value="0">
+              </div>
+
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-download-single-sound" data-channel="binaural">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Ushbu Tovushni Yuklab Olish (Audio)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 4. Okean Oq Shovqini Qatlami -->
+          <div class="sound-card" id="card-ocean" data-channel="ocean">
+            <div class="sound-card-header">
+              <div class="sound-card-title-group">
+                <button class="ios-btn-icon btn-toggle-play" data-channel="ocean" title="Ijro / To'xtatish">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <div class="sound-icon-box" style="background-color: var(--ios-teal);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+                    <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ios-headline">Okean To'lqinlari</div>
+                  <div class="ios-caption2">LFO modulyatsiyali to'lqin</div>
+                </div>
+              </div>
+              <div class="ios-switch">
+                <input type="checkbox" id="switch-ocean" aria-label="Okean tovushini yoqish">
+                <span class="ios-switch-slider"></span>
+              </div>
+            </div>
+
+            <div class="sound-controls-row">
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Ovoz kuchi</span>
+                  <span id="label-vol-ocean">60%</span>
+                </div>
+                <input type="range" id="slider-vol-ocean" class="ios-slider" min="0" max="1" step="0.01" value="0.6">
+              </div>
+
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Stereo Pan (Chap / O'ng)</span>
+                  <span id="label-pan-ocean">Markaz</span>
+                </div>
+                <input type="range" id="slider-pan-ocean" class="ios-slider" min="-1" max="1" step="0.05" value="0">
+              </div>
+
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-download-single-sound" data-channel="ocean">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Ushbu Tovushni Yuklab Olish (Audio)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 5. Momaqaldiroq & Guldurak -->
+          <div class="sound-card" id="card-thunder" data-channel="thunder">
+            <div class="sound-card-header">
+              <div class="sound-card-title-group">
+                <button class="ios-btn-icon btn-toggle-play" data-channel="thunder">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <div class="sound-icon-box" style="background-color: var(--ios-indigo);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ios-headline">Momaqaldiroq & Guldurak</div>
+                  <div class="ios-caption2">Chuqur sub-bass chaqmoq</div>
+                </div>
+              </div>
+              <div class="ios-switch">
+                <input type="checkbox" id="switch-thunder" aria-label="Momaqaldiroq tovushini yoqish">
+                <span class="ios-switch-slider"></span>
+              </div>
+            </div>
+
+            <div class="sound-controls-row">
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Ovoz kuchi</span>
+                  <span id="label-vol-thunder">50%</span>
+                </div>
+                <input type="range" id="slider-vol-thunder" class="ios-slider" min="0" max="1" step="0.01" value="0.5">
+              </div>
+
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Stereo Pan (Chap / O'ng)</span>
+                  <span id="label-pan-thunder">Markaz</span>
+                </div>
+                <input type="range" id="slider-pan-thunder" class="ios-slider" min="-1" max="1" step="0.05" value="0">
+              </div>
+
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-download-single-sound" data-channel="thunder">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Ushbu Tovushni Yuklab Olish (Audio)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 6. Tungi Gulxan & Cho'g' -->
+          <div class="sound-card" id="card-campfire" data-channel="campfire">
+            <div class="sound-card-header">
+              <div class="sound-card-title-group">
+                <button class="ios-btn-icon btn-toggle-play" data-channel="campfire">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <div class="sound-icon-box" style="background-color: var(--ios-orange);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ios-headline">Tungi Gulxan & Olov</div>
+                  <div class="ios-caption2">Yog'och chirsillashi va olov</div>
+                </div>
+              </div>
+              <div class="ios-switch">
+                <input type="checkbox" id="switch-campfire" aria-label="Gulxan tovushini yoqish">
+                <span class="ios-switch-slider"></span>
+              </div>
+            </div>
+
+            <div class="sound-controls-row">
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Ovoz kuchi</span>
+                  <span id="label-vol-campfire">55%</span>
+                </div>
+                <input type="range" id="slider-vol-campfire" class="ios-slider" min="0" max="1" step="0.01" value="0.55">
+              </div>
+
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Stereo Pan (Chap / O'ng)</span>
+                  <span id="label-pan-campfire">Markaz</span>
+                </div>
+                <input type="range" id="slider-pan-campfire" class="ios-slider" min="-1" max="1" step="0.05" value="0">
+              </div>
+
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-download-single-sound" data-channel="campfire">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Ushbu Tovushni Yuklab Olish (Audio)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 7. Sokin Qahvaxona Muhiti -->
+          <div class="sound-card" id="card-coffeeshop" data-channel="coffeeshop">
+            <div class="sound-card-header">
+              <div class="sound-card-title-group">
+                <button class="ios-btn-icon btn-toggle-play" data-channel="coffeeshop">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <div class="sound-icon-box" style="background-color: var(--ios-yellow); color: #000000;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ios-headline">Shovqinli Qahvaxona</div>
+                  <div class="ios-caption2">Shinam kafe va chashkalar</div>
+                </div>
+              </div>
+              <div class="ios-switch">
+                <input type="checkbox" id="switch-coffeeshop" aria-label="Qahvaxona tovushini yoqish">
+                <span class="ios-switch-slider"></span>
+              </div>
+            </div>
+
+            <div class="sound-controls-row">
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Ovoz kuchi</span>
+                  <span id="label-vol-coffeeshop">50%</span>
+                </div>
+                <input type="range" id="slider-vol-coffeeshop" class="ios-slider" min="0" max="1" step="0.01" value="0.5">
+              </div>
+
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Stereo Pan (Chap / O'ng)</span>
+                  <span id="label-pan-coffeeshop">Markaz</span>
+                </div>
+                <input type="range" id="slider-pan-coffeeshop" class="ios-slider" min="-1" max="1" step="0.05" value="0">
+              </div>
+
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-download-single-sound" data-channel="coffeeshop">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Ushbu Tovushni Yuklab Olish (Audio)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 8. Kosmik Sukunat & Dron (432Hz) -->
+          <div class="sound-card" id="card-cosmic" data-channel="cosmic">
+            <div class="sound-card-header">
+              <div class="sound-card-title-group">
+                <button class="ios-btn-icon btn-toggle-play" data-channel="cosmic">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <div class="sound-icon-box" style="background-color: var(--ios-purple);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ios-headline">Kosmik Dron (432Hz)</div>
+                  <div class="ios-caption2">Chuqur fazoviy garmonika</div>
+                </div>
+              </div>
+              <div class="ios-switch">
+                <input type="checkbox" id="switch-cosmic" aria-label="Kosmik dronni yoqish">
+                <span class="ios-switch-slider"></span>
+              </div>
+            </div>
+
+            <div class="sound-controls-row">
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Ovoz kuchi</span>
+                  <span id="label-vol-cosmic">45%</span>
+                </div>
+                <input type="range" id="slider-vol-cosmic" class="ios-slider" min="0" max="1" step="0.01" value="0.45">
+              </div>
+
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Stereo Pan (Chap / O'ng)</span>
+                  <span id="label-pan-cosmic">Markaz</span>
+                </div>
+                <input type="range" id="slider-pan-cosmic" class="ios-slider" min="-1" max="1" step="0.05" value="0">
+              </div>
+
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-download-single-sound" data-channel="cosmic">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Ushbu Tovushni Yuklab Olish (Audio)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 9. Tibet Qo'ng'iroqlari & Kosalari -->
+          <div class="sound-card" id="card-tibetan" data-channel="tibetan">
+            <div class="sound-card-header">
+              <div class="sound-card-title-group">
+                <button class="ios-btn-icon btn-toggle-play" data-channel="tibetan">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <div class="sound-icon-box" style="background-color: var(--ios-pink);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ios-headline">Tibet Kosalari</div>
+                  <div class="ios-caption2">Rezonansli kristall sado</div>
+                </div>
+              </div>
+              <div class="ios-switch">
+                <input type="checkbox" id="switch-tibetan" aria-label="Tibet kosasini yoqish">
+                <span class="ios-switch-slider"></span>
+              </div>
+            </div>
+
+            <div class="sound-controls-row">
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Ovoz kuchi</span>
+                  <span id="label-vol-tibetan">50%</span>
+                </div>
+                <input type="range" id="slider-vol-tibetan" class="ios-slider" min="0" max="1" step="0.01" value="0.5">
+              </div>
+
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Stereo Pan (Chap / O'ng)</span>
+                  <span id="label-pan-tibetan">Markaz</span>
+                </div>
+                <input type="range" id="slider-pan-tibetan" class="ios-slider" min="-1" max="1" step="0.05" value="0">
+              </div>
+
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-download-single-sound" data-channel="tibetan">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Ushbu Tovushni Yuklab Olish (Audio)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 10. Tog' Buloqlari & Oqar Suv -->
+          <div class="sound-card" id="card-stream" data-channel="stream">
+            <div class="sound-card-header">
+              <div class="sound-card-title-group">
+                <button class="ios-btn-icon btn-toggle-play" data-channel="stream">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <div class="sound-icon-box" style="background-color: var(--ios-teal);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ios-headline">Tog' Buloqlari & Suv</div>
+                  <div class="ios-caption2">Oqar suv shildirashi</div>
+                </div>
+              </div>
+              <div class="ios-switch">
+                <input type="checkbox" id="switch-stream" aria-label="Buloq suvini yoqish">
+                <span class="ios-switch-slider"></span>
+              </div>
+            </div>
+
+            <div class="sound-controls-row">
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Ovoz kuchi</span>
+                  <span id="label-vol-stream">50%</span>
+                </div>
+                <input type="range" id="slider-vol-stream" class="ios-slider" min="0" max="1" step="0.01" value="0.5">
+              </div>
+
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Stereo Pan (Chap / O'ng)</span>
+                  <span id="label-pan-stream">Markaz</span>
+                </div>
+                <input type="range" id="slider-pan-stream" class="ios-slider" min="-1" max="1" step="0.05" value="0">
+              </div>
+
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-download-single-sound" data-channel="stream">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Ushbu Tovushni Yuklab Olish (Audio)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 11. Tungi Shahar Shabadasi -->
+          <div class="sound-card" id="card-nightcity" data-channel="nightcity">
+            <div class="sound-card-header">
+              <div class="sound-card-title-group">
+                <button class="ios-btn-icon btn-toggle-play" data-channel="nightcity">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <div class="sound-icon-box" style="background-color: var(--ios-gray);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ios-headline">Tungi Shahar Shabadasi</div>
+                  <div class="ios-caption2">Uzoq shahar sokinligi</div>
+                </div>
+              </div>
+              <div class="ios-switch">
+                <input type="checkbox" id="switch-nightcity" aria-label="Tungi shaharni yoqish">
+                <span class="ios-switch-slider"></span>
+              </div>
+            </div>
+
+            <div class="sound-controls-row">
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Ovoz kuchi</span>
+                  <span id="label-vol-nightcity">50%</span>
+                </div>
+                <input type="range" id="slider-vol-nightcity" class="ios-slider" min="0" max="1" step="0.01" value="0.5">
+              </div>
+
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Stereo Pan (Chap / O'ng)</span>
+                  <span id="label-pan-nightcity">Markaz</span>
+                </div>
+                <input type="range" id="slider-pan-nightcity" class="ios-slider" min="-1" max="1" step="0.05" value="0">
+              </div>
+
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-download-single-sound" data-channel="nightcity">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Ushbu Tovushni Yuklab Olish (Audio)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 12. Pushti & Jigarrang Shovqin -->
+          <div class="sound-card" id="card-noises" data-channel="noises">
+            <div class="sound-card-header">
+              <div class="sound-card-title-group">
+                <button class="ios-btn-icon btn-toggle-play" data-channel="noises">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <div class="sound-icon-box" style="background-color: var(--ios-red);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="12" cy="12" r="2"></circle>
+                    <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ios-headline">Pushti & Jigarrang Shovqin</div>
+                  <div class="ios-caption2">Chuqur diqqat foni</div>
+                </div>
+              </div>
+              <div class="ios-switch">
+                <input type="checkbox" id="switch-noises" aria-label="Pushti shovqinni yoqish">
+                <span class="ios-switch-slider"></span>
+              </div>
+            </div>
+
+            <div class="sound-controls-row">
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Ovoz kuchi</span>
+                  <span id="label-vol-noises">50%</span>
+                </div>
+                <input type="range" id="slider-vol-noises" class="ios-slider" min="0" max="1" step="0.01" value="0.5">
+              </div>
+
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Stereo Pan (Chap / O'ng)</span>
+                  <span id="label-pan-noises">Markaz</span>
+                </div>
+                <input type="range" id="slider-pan-noises" class="ios-slider" min="-1" max="1" step="0.05" value="0">
+              </div>
+
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-download-single-sound" data-channel="noises">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Ushbu Tovushni Yuklab Olish (Audio)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 13. Kuzgi Barglar Shovqini & Shamol -->
+          <div class="sound-card" id="card-leaves" data-channel="leaves">
+            <div class="sound-card-header">
+              <div class="sound-card-title-group">
+                <button class="ios-btn-icon btn-toggle-play" data-channel="leaves">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <div class="sound-icon-box" style="background-color: var(--ios-orange);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ios-headline">Kuzgi Barglar & Shamol</div>
+                  <div class="ios-caption2">Barglar shitirlashi va epkin</div>
+                </div>
+              </div>
+              <div class="ios-switch">
+                <input type="checkbox" id="switch-leaves" aria-label="Kuzgi barglarni yoqish">
+                <span class="ios-switch-slider"></span>
+              </div>
+            </div>
+
+            <div class="sound-controls-row">
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Ovoz kuchi</span>
+                  <span id="label-vol-leaves">50%</span>
+                </div>
+                <input type="range" id="slider-vol-leaves" class="ios-slider" min="0" max="1" step="0.01" value="0.5">
+              </div>
+
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Stereo Pan (Chap / O'ng)</span>
+                  <span id="label-pan-leaves">Markaz</span>
+                </div>
+                <input type="range" id="slider-pan-leaves" class="ios-slider" min="-1" max="1" step="0.05" value="0">
+              </div>
+
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-download-single-sound" data-channel="leaves">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Ushbu Tovushni Yuklab Olish (Audio)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 14. Tungi Poyezd va Relslar -->
+          <div class="sound-card" id="card-train" data-channel="train">
+            <div class="sound-card-header">
+              <div class="sound-card-title-group">
+                <button class="ios-btn-icon btn-toggle-play" data-channel="train">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <div class="sound-icon-box" style="background-color: var(--ios-indigo);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <rect x="4" y="3" width="16" height="16" rx="2"></rect>
+                    <path d="M4 11h16"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ios-headline">Tungi Poyezd Relslari</div>
+                  <div class="ios-caption2">Gipnotik ritmli tebranish</div>
+                </div>
+              </div>
+              <div class="ios-switch">
+                <input type="checkbox" id="switch-train" aria-label="Poyezd tovushini yoqish">
+                <span class="ios-switch-slider"></span>
+              </div>
+            </div>
+
+            <div class="sound-controls-row">
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Ovoz kuchi</span>
+                  <span id="label-vol-train">50%</span>
+                </div>
+                <input type="range" id="slider-vol-train" class="ios-slider" min="0" max="1" step="0.01" value="0.5">
+              </div>
+
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Stereo Pan (Chap / O'ng)</span>
+                  <span id="label-pan-train">Markaz</span>
+                </div>
+                <input type="range" id="slider-pan-train" class="ios-slider" min="-1" max="1" step="0.05" value="0">
+              </div>
+
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-download-single-sound" data-channel="train">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Ushbu Tovushni Yuklab Olish (Audio)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 15. Qadimiy Soat Tik-Taki -->
+          <div class="sound-card" id="card-clock" data-channel="clock">
+            <div class="sound-card-header">
+              <div class="sound-card-title-group">
+                <button class="ios-btn-icon btn-toggle-play" data-channel="clock">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <div class="sound-icon-box" style="background-color: var(--ios-yellow); color: #000000;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ios-headline">Qadimiy Soat Tik-Taki</div>
+                  <div class="ios-caption2">Vaqt mayatnigi sokinligi</div>
+                </div>
+              </div>
+              <div class="ios-switch">
+                <input type="checkbox" id="switch-clock" aria-label="Soat tovushini yoqish">
+                <span class="ios-switch-slider"></span>
+              </div>
+            </div>
+
+            <div class="sound-controls-row">
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Ovoz kuchi</span>
+                  <span id="label-vol-clock">50%</span>
+                </div>
+                <input type="range" id="slider-vol-clock" class="ios-slider" min="0" max="1" step="0.01" value="0.5">
+              </div>
+
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Stereo Pan (Chap / O'ng)</span>
+                  <span id="label-pan-clock">Markaz</span>
+                </div>
+                <input type="range" id="slider-pan-clock" class="ios-slider" min="-1" max="1" step="0.05" value="0">
+              </div>
+
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-download-single-sound" data-channel="clock">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Ushbu Tovushni Yuklab Olish (Audio)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 16. Ambient Pianino Garmoniyasi -->
+          <div class="sound-card" id="card-piano" data-channel="piano">
+            <div class="sound-card-header">
+              <div class="sound-card-title-group">
+                <button class="ios-btn-icon btn-toggle-play" data-channel="piano">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <div class="sound-icon-box" style="background-color: var(--ios-pink);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M9 18V5l12-2v13"></path>
+                    <circle cx="6" cy="18" r="3"></circle>
+                    <circle cx="18" cy="16" r="3"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ios-headline">Ambient Pianino</div>
+                  <div class="ios-caption2">Neoklassik pentatonik kuylar</div>
+                </div>
+              </div>
+              <div class="ios-switch">
+                <input type="checkbox" id="switch-piano" aria-label="Pianino tovushini yoqish">
+                <span class="ios-switch-slider"></span>
+              </div>
+            </div>
+
+            <div class="sound-controls-row">
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Ovoz kuchi</span>
+                  <span id="label-vol-piano">55%</span>
+                </div>
+                <input type="range" id="slider-vol-piano" class="ios-slider" min="0" max="1" step="0.01" value="0.55">
+              </div>
+
+              <div class="sound-slider-group">
+                <div class="sound-slider-labels">
+                  <span>Stereo Pan (Chap / O'ng)</span>
+                  <span id="label-pan-piano">Markaz</span>
+                </div>
+                <input type="range" id="slider-pan-piano" class="ios-slider" min="-1" max="1" step="0.05" value="0">
+              </div>
+
+              <button class="ios-btn ios-btn-sm ios-btn-secondary btn-download-single-sound" data-channel="piano">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Ushbu Tovushni Yuklab Olish (Audio)</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- ====================================================================
+         4. TAB 3: XOTIRALAR ARXIVI (Sensory Archive)
+         ==================================================================== -->
+    <main id="tab-archive" class="tab-content">
+      
+      <!-- Qidiruv va Filtrlar -->
+      <section class="ios-section" style="padding-bottom: 8px;">
+        <div class="ios-input-group">
+          <input type="text" id="archive-search-input" class="ios-input" placeholder="Xotiralar, joylashuv yoki teglar bo'yicha qidiruv...">
+        </div>
+
+        <div class="ios-segmented-control" id="mood-filter-control" style="margin-top: 10px;">
+          <button class="ios-segment-item active" data-mood="all">Barchasi</button>
+          <button class="ios-segment-item" data-mood="Xotirjamlik">Xotirjamlik</button>
+          <button class="ios-segment-item" data-mood="Chuqur Diqqat">Diqqat</button>
+          <button class="ios-segment-item" data-mood="Ilhom va Hayrat">Ilhom</button>
+        </div>
+      </section>
+
+      <!-- Xotiralar Ro'yxati -->
+      <section class="ios-section">
+        <div class="ios-section-header">Saqlangan Sensor Kapsulalari</div>
+        <div id="archive-capsules-list" class="ios-grouped-list">
+          <!-- Dinamik ravishda JS orqali to'ldiriladi -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ====================================================================
+         5. TAB 4: MUALLIF VA TIZIM HAQIDA (About & System)
+         ==================================================================== -->
+    <main id="tab-about" class="tab-content">
+      
+      <!-- Tizim Ma'lumotlari -->
+      <section class="ios-section">
+        <div class="ios-section-header">Tizim Haqida</div>
+        <div class="ios-grouped-list">
+          <div class="ios-cell">
+            <span class="ios-body">Ilova Nomi</span>
+            <span class="ios-headline" style="color: var(--ios-blue);">AuraEcho v2.5 Pro Studio</span>
+          </div>
+          <div class="ios-cell">
+            <span class="ios-body">Konsept</span>
+            <span class="ios-callout">Fazoviy Xotira, Sensorli Jurnal & Sintezator</span>
+          </div>
+          <div class="ios-cell">
+            <span class="ios-body">Tovushlar Studiyasi</span>
+            <span class="ios-callout">16 Qatlamli Web Audio Procedural Engine</span>
+          </div>
+          <div class="ios-cell">
+            <span class="ios-body">Audio Eksport</span>
+            <span class="ios-callout" style="color: var(--ios-green); font-weight: 600;">WAV / Audio Fayl Yuklab Olish</span>
+          </div>
+          <div class="ios-cell">
+            <span class="ios-body">Qurilmalar Mosligi</span>
+            <span class="ios-callout">Mobil, Planshet, Noutbuk, Desktop</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ma'lumotlar Boshqaruvi -->
+      <section class="ios-section">
+        <div class="ios-section-header">Ma'lumotlar Boshqaruvi</div>
+        <div class="ios-grouped-list">
+          <div class="ios-cell interactive" id="btn-export-json">
+            <div class="ios-cell-left">
+              <div class="ios-cell-icon" style="background-color: var(--ios-indigo);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+              </div>
+              <div class="ios-cell-content">
+                <span class="ios-cell-title">Xotiralarni Eksport Qilish</span>
+                <span class="ios-cell-subtitle">JSON formatida zaxira nusxasini yuklab olish</span>
+              </div>
+            </div>
+            <span class="ios-chevron">›</span>
+          </div>
+
+          <div class="ios-cell interactive" id="btn-trigger-import">
+            <div class="ios-cell-left">
+              <div class="ios-cell-icon" style="background-color: var(--ios-teal);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+              </div>
+              <div class="ios-cell-content">
+                <span class="ios-cell-title">JSON Xotiralarini Import Qilish</span>
+                <span class="ios-cell-subtitle">Fayldan xotiralarni tiklash</span>
+              </div>
+            </div>
+            <input type="file" id="file-import-input" accept=".json" style="display: none;">
+            <span class="ios-chevron">›</span>
+          </div>
+
+          <div class="ios-cell interactive" id="btn-reset-defaults">
+            <div class="ios-cell-left">
+              <div class="ios-cell-icon" style="background-color: var(--ios-red);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                  <path d="M21 3v5h-5"></path>
+                  <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                  <path d="M8 16H3v5"></path>
+                </svg>
+              </div>
+              <div class="ios-cell-content">
+                <span class="ios-cell-title" style="color: var(--ios-red);">Boshlang'ich Holatga Qaytarish</span>
+                <span class="ios-cell-subtitle">Namunaviy xotiralarni qayta yuklash</span>
+              </div>
+            </div>
+            <span class="ios-chevron">›</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mualliflik Bo'limi -->
+      <section class="ios-section">
+        <div class="ios-section-header">Muallif va Ishlab Chiqish</div>
+        <div class="ios-grouped-list" style="padding: 20px; background-color: var(--bg-grouped);">
+          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+            <div style="width: 52px; height: 52px; border-radius: 50%; background-color: var(--ios-blue); display: flex; align-items: center; justify-content: center; color: #FFFFFF;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div>
+              <div class="ios-title3">Hayrulloh Abdusamadov</div>
+              <div class="ios-subhead">Senior Flutter & Web UI/UX Architect</div>
+            </div>
+          </div>
+
+          <p class="ios-body" style="font-size: 14px; margin-bottom: 16px; color: var(--text-secondary); line-height: 22px;">
+            AuraEcho inson xotiralarini shunchaki matn sifatida emas, balki 16 qatlamli fazoviy tovush to'lqinlari, shaxsiy sintezator va akustik tebranish muhiti bilan birga saqlovchi hamda audio eksport qiluvchi professional sensorli platformadir.
+          </p>
+
+          <a href="https://t.me/HayrullohAdusamadov" target="_blank" rel="noopener noreferrer" class="ios-btn ios-btn-primary ios-btn-block">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.06-.49-.83-.27-1.49-.42-1.43-.88.03-.24.38-.49 1.03-.75 4.04-1.76 6.74-2.92 8.09-3.49 3.85-1.61 4.65-1.89 5.17-1.9.11 0 .37.03.54.17.14.12.18.28.2.45-.01.07.01.22 0 .39z"/>
+            </svg>
+            <span>Telegram Kanalga O'tish (t.me/HayrullohAdusamadov)</span>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ====================================================================
+         6. MAJBURIY ATTRIBUTION FOOTER
+         ==================================================================== -->
+    <footer class="ios-footer-attribution">
+      <div class="ios-footer-title">AuraEcho — Fazoviy Xotira va Hissiyot Tizimi</div>
+      <div class="ios-footer-author"><strong>Yaratuvchi:</strong> Hayrulloh Abdusamadov</div>
+      <a href="https://t.me/HayrullohAdusamadov" target="_blank" rel="noopener noreferrer" class="ios-footer-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.06-.49-.83-.27-1.49-.42-1.43-.88.03-.24.38-.49 1.03-.75 4.04-1.76 6.74-2.92 8.09-3.49 3.85-1.61 4.65-1.89 5.17-1.9.11 0 .37.03.54.17.14.12.18.28.2.45-.01.07.01.22 0 .39z"/>
+        </svg>
+        <span>https://t.me/HayrullohAdusamadov</span>
+      </a>
+    </footer>
+
+    <!-- ====================================================================
+         7. iOS Cupertino Bottom Tab Bar
+         ==================================================================== -->
+    <nav class="ios-tab-bar" aria-label="Asosiy Navigatsiya">
+      <button class="ios-tab-item active" data-tab="tab-dashboard" aria-label="Boshqaruv">
+        <span class="ios-tab-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+        </span>
+        <span class="ios-tab-label">Boshqaruv</span>
+      </button>
+
+      <button class="ios-tab-item" data-tab="tab-audio" aria-label="Tovushlar">
+        <span class="ios-tab-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"></path>
+            <circle cx="6" cy="18" r="3"></circle>
+            <circle cx="18" cy="16" r="3"></circle>
+          </svg>
+        </span>
+        <span class="ios-tab-label">Tovushlar (16)</span>
+      </button>
+
+      <button class="ios-tab-item" data-tab="tab-archive" aria-label="Arxiv">
+        <span class="ios-tab-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="21 8 21 21 3 21 3 8"></polyline>
+            <rect x="1" y="3" width="22" height="5"></rect>
+            <line x1="10" y1="12" x2="14" y2="12"></line>
+          </svg>
+        </span>
+        <span class="ios-tab-label">Arxiv</span>
+      </button>
+
+      <button class="ios-tab-item" data-tab="tab-about" aria-label="Haqida">
+        <span class="ios-tab-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+        </span>
+        <span class="ios-tab-label">Haqida</span>
+      </button>
+    </nav>
+
+    <!-- ====================================================================
+         8. MODAL 1: YANGI XOTIRA KAPSULASI (Cupertino Sheet)
+         ==================================================================== -->
+    <div id="modal-create-capsule" class="ios-modal-backdrop">
+      <div class="ios-sheet">
+        <div class="ios-sheet-handle"></div>
+        <div class="ios-sheet-header">
+          <button id="btn-cancel-create" class="ios-btn ios-btn-sm ios-btn-secondary" style="background: transparent;">Bekor qilish</button>
+          <span class="ios-headline">Yangi Xotira</span>
+          <button id="btn-save-capsule" class="ios-btn ios-btn-sm ios-btn-primary" style="padding: 8px 16px;">Saqlash</button>
+        </div>
+
+        <div class="ios-sheet-body">
+          <div class="ios-input-group">
+            <label class="ios-input-label" for="input-capsule-title">Xotira Nomi</label>
+            <input type="text" id="input-capsule-title" class="ios-input" placeholder="Masalan: Zomin tog'lari shabadasi..." required>
+          </div>
+
+          <div class="ios-input-group">
+            <label class="ios-input-label">Hissiyot Holati (Mood)</label>
+            <div class="ios-segmented-control" id="form-mood-selector">
+              <button type="button" class="ios-segment-item active" data-mood="Xotirjamlik" data-color="#34C759">Xotirjam</button>
+              <button type="button" class="ios-segment-item" data-mood="Chuqur Diqqat" data-color="#007AFF">Diqqat</button>
+              <button type="button" class="ios-segment-item" data-mood="Ilhom va Hayrat" data-color="#AF52DE">Ilhom</button>
+              <button type="button" class="ios-segment-item" data-mood="Quvonch" data-color="#FF9500">Quvonch</button>
+            </div>
+          </div>
+
+          <div class="ios-input-group">
+            <label class="ios-input-label" for="input-capsule-location">Joylashuv / Muhit</label>
+            <input type="text" id="input-capsule-location" class="ios-input" placeholder="Masalan: Zomin milliy bog'i, Jizzax">
+          </div>
+
+          <div class="ios-input-group">
+            <label class="ios-input-label">Biriktiriladigan Fazoviy Tovush Muhiti</label>
+            <div class="ios-segmented-control" id="form-sound-preset">
+              <button type="button" class="ios-segment-item active" data-sound="calm">Tinchlik</button>
+              <button type="button" class="ios-segment-item" data-sound="focus">Yomg'ir</button>
+              <button type="button" class="ios-segment-item" data-sound="meditation">Zen</button>
+              <button type="button" class="ios-segment-item" data-sound="campfire">Gulxan</button>
+              <button type="button" class="ios-segment-item" data-sound="creative">Pianino</button>
+              <button type="button" class="ios-segment-item" data-sound="train">Poyezd</button>
+            </div>
+          </div>
+
+          <div class="ios-input-group">
+            <label class="ios-input-label">Sensor Telemetriya Holati</label>
+            <div class="telemetry-grid">
+              <div class="telemetry-card" style="padding: 10px;">
+                <span class="ios-caption2">Shovqin</span>
+                <span class="ios-headline" id="snapshot-db">38 dB</span>
+              </div>
+              <div class="telemetry-card" style="padding: 10px;">
+                <span class="ios-caption2">Yorug'lik</span>
+                <span class="ios-headline" id="snapshot-lux">420 lux</span>
+              </div>
+              <div class="telemetry-card" style="padding: 10px;">
+                <span class="ios-caption2">Uyg'unlik</span>
+                <span class="ios-headline" id="snapshot-harmony" style="color: var(--ios-green);">86%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ios-input-group">
+            <label class="ios-input-label">Sensorli Teglar</label>
+            <div class="tag-list" id="modal-tag-selector">
+              <span class="sensory-tag active" data-tag="Tabiat">🌿 Tabiat</span>
+              <span class="sensory-tag active" data-tag="Salqin shabada">💨 Salqin shabada</span>
+              <span class="sensory-tag" data-tag="Tungi shahar">🌃 Tungi shahar</span>
+              <span class="sensory-tag" data-tag="Yomg'ir">🌧️ Yomg'ir</span>
+              <span class="sensory-tag" data-tag="Qahva">☕ Qahva</span>
+              <span class="sensory-tag" data-tag="Ijodkorlik">✨ Ijodkorlik</span>
+              <span class="sensory-tag" data-tag="Gulxan">🔥 Gulxan</span>
+              <span class="sensory-tag" data-tag="Pianino">🎹 Pianino</span>
+            </div>
+          </div>
+
+          <div class="ios-input-group">
+            <label class="ios-input-label" for="input-capsule-notes">Xotira Tafsilotlari & Fikrlar</label>
+            <textarea id="input-capsule-notes" class="ios-input" placeholder="Ushbu lahzada nimalarni his qildingiz? Atrof muhit qanday edi?"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         9. MODAL 3: SHAXSIY TOVUSH SINTEZATORI (Custom Sound Creator Workshop)
+         ==================================================================== -->
+    <div id="modal-custom-synth" class="ios-modal-backdrop">
+      <div class="ios-sheet">
+        <div class="ios-sheet-handle"></div>
+        <div class="ios-sheet-header">
+          <button id="btn-cancel-custom-synth" class="ios-btn ios-btn-sm ios-btn-secondary" style="background: transparent;">Yopish</button>
+          <span class="ios-headline">Shaxsiy Tovush Studiyasi</span>
+          <button id="btn-save-custom-sound" class="ios-btn ios-btn-sm ios-btn-primary">Saqlash</button>
+        </div>
+
+        <div class="ios-sheet-body">
+          <div class="ios-grouped-list" style="padding: 16px; background: var(--bg-tertiary);">
+            <div class="ios-caption1" style="font-weight: 700; color: var(--ios-blue);">O'z Tovushingizni Yarating</div>
+            <p class="ios-footnote" style="margin-top: 2px;">To'lqin turi, filtr, tebranish chastotasini o'zingiz tanlang va eshitib ko'ring.</p>
+          </div>
+
+          <!-- To'lqin shakli -->
+          <div class="ios-input-group">
+            <label class="ios-input-label">Generator Turi (Waveform / Shovqin)</label>
+            <div class="ios-segmented-control" id="custom-wave-selector">
+              <button type="button" class="ios-segment-item active" data-wave="sine">Sinus</button>
+              <button type="button" class="ios-segment-item" data-wave="triangle">Uchburchak</button>
+              <button type="button" class="ios-segment-item" data-wave="sawtooth">Arrasimon</button>
+              <button type="button" class="ios-segment-item" data-wave="pink">Pushti Shovqin</button>
+              <button type="button" class="ios-segment-item" data-wave="brown">Jigarrang Shovqin</button>
+            </div>
+          </div>
+
+          <!-- Asosiy Chastota -->
+          <div class="ios-input-group">
+            <div class="sound-slider-labels">
+              <label class="ios-input-label">Asosiy Chastota (Pitch Hz)</label>
+              <span id="custom-freq-label" class="ios-caption1" style="font-weight: 700; color: var(--ios-blue);">220 Hz</span>
+            </div>
+            <input type="range" id="custom-freq-slider" class="ios-slider" min="40" max="1200" step="5" value="220">
+          </div>
+
+          <!-- Filtr turi -->
+          <div class="ios-input-group">
+            <label class="ios-input-label">Rezonansli Filtr Turi</label>
+            <div class="ios-segmented-control" id="custom-filter-selector">
+              <button type="button" class="ios-segment-item active" data-filter="lowpass">Lowpass (Iliq)</button>
+              <button type="button" class="ios-segment-item" data-filter="bandpass">Bandpass (Tor)</button>
+              <button type="button" class="ios-segment-item" data-filter="highpass">Highpass (Yorqin)</button>
+            </div>
+          </div>
+
+          <!-- Filtr Kesish Chastotasi -->
+          <div class="ios-input-group">
+            <div class="sound-slider-labels">
+              <label class="ios-input-label">Filtr Kesish Chastotasi (Cutoff Hz)</label>
+              <span id="custom-cutoff-label" class="ios-caption1" style="font-weight: 700; color: var(--ios-blue);">800 Hz</span>
+            </div>
+            <input type="range" id="custom-cutoff-slider" class="ios-slider" min="100" max="4000" step="20" value="800">
+          </div>
+
+          <!-- LFO Tebranish Tezligi -->
+          <div class="ios-input-group">
+            <div class="sound-slider-labels">
+              <label class="ios-input-label">LFO Modulyatsiya Tezligi (Tebranish)</label>
+              <span id="custom-lfo-label" class="ios-caption1" style="font-weight: 700; color: var(--ios-blue);">2.0 Hz</span>
+            </div>
+            <input type="range" id="custom-lfo-slider" class="ios-slider" min="0.1" max="15" step="0.1" value="2.0">
+          </div>
+
+          <!-- Sinash va Yuklab olish tugmalari -->
+          <div style="display: flex; gap: 10px; margin-top: 8px;">
+            <button id="btn-test-custom-sound" class="ios-btn ios-btn-primary" style="flex: 1;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <span id="custom-test-btn-text">Tovushni Sinash (Ijro)</span>
+            </button>
+
+            <button id="btn-download-custom-sound" class="ios-btn ios-btn-secondary" style="flex: 1;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Yuklab Olish (Audio)</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         10. MODAL 2: XOTIRA TAFSILOTLARI (View Capsule Details Sheet)
+         ==================================================================== -->
+    <div id="modal-view-capsule" class="ios-modal-backdrop">
+      <div class="ios-sheet">
+        <div class="ios-sheet-handle"></div>
+        <div class="ios-sheet-header">
+          <button id="btn-close-view" class="ios-btn ios-btn-sm ios-btn-secondary" style="background: transparent;">Yopish</button>
+          <span class="ios-headline" id="view-capsule-modal-title">Xotira</span>
+          <button id="btn-delete-capsule-trigger" class="ios-btn ios-btn-sm ios-btn-secondary" style="color: var(--ios-red); background: transparent;">O'chirish</button>
+        </div>
+
+        <div class="ios-sheet-body" id="view-capsule-body">
+          <!-- Dinamik ravishda to'ldiriladi -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         11. iOS ALERT DIALOG: O'CHIRISH TASDIG'I
+         ==================================================================== -->
+    <div id="alert-delete-dialog" class="ios-alert-backdrop">
+      <div class="ios-alert-box">
+        <div class="ios-alert-content">
+          <div class="ios-alert-title">Xotirani O'chirish</div>
+          <div class="ios-alert-message">Haqiqatan ham ushbu xotira kapsulasini o'chirib tashlamoqchimisiz? Bu amalni ortga qaytarib bo'lmaydi.</div>
+        </div>
+        <div class="ios-alert-actions">
+          <button id="btn-alert-cancel" class="ios-alert-btn">Bekor qilish</button>
+          <button id="btn-alert-confirm-delete" class="ios-alert-btn destructive bold">O'chirish</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         12. TOAST BILDIRISHNOMA
+         ==================================================================== -->
+    <div id="app-toast" class="ios-toast">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ios-green)" stroke-width="3">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+      <span id="toast-message">Muvaffaqiyatli bajarildi</span>
+    </div>
+
+  </div>
+
+  <!-- Skriptlar -->
+  <script src="js/audio.js"></script>
+  <script src="js/sensors.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
